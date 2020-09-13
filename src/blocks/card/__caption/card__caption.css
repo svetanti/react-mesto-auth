@@ -1,0 +1,10 @@
+.card__caption {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-left: 21px;
+  padding: 0;
+  grid-area: caption;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

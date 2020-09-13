@@ -1,0 +1,13 @@
+.auth-info__signout {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: #a9a9a9;
+  transition: opacity 0.7s ease;
+}
+
+.auth-info__signout:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

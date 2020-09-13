@@ -1,0 +1,12 @@
+.form_type_infoTooltip {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .form {
+    width: 87.5vw;
+    min-height: 308px;
+  }
+}

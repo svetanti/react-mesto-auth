@@ -1,0 +1,11 @@
+@media screen and (max-width: 500px) {
+  .form__button_close_type_infoTooltip {
+    width: 42px;
+    height: 42px;
+    top: 0;
+    right: 0;
+    top: -20%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

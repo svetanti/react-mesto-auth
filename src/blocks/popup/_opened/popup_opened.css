@@ -1,0 +1,9 @@
+.popup_opened {
+  position: fixed;
+  z-index: 2;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity .7s ease-out;
+  -moz-transition: visibility 0s, opacity .7s ease-out;
+}

@@ -1,0 +1,12 @@
+.auth {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 320px) {
+  .auth {
+    font-size: 14px;
+    line-height: 17px;
+    margin-right: 27px;
+  }
+}

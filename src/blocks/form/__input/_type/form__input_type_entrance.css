@@ -1,0 +1,17 @@
+.form__input_type_entrance {
+  background-color: #000;
+  border-bottom: 2px solid #ccc;
+  color: #fff;
+}
+
+::placeholder {
+  color: #ccc;
+}
+
+:-ms-input-placeholder {
+  color: #ccc;
+}
+
+::-ms-input-placeholder {
+  color: #ccc;
+}

@@ -1,0 +1,16 @@
+.form__button_submit_type_entrance {
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.form__button_submit_type_entrance:hover {
+  opacity: 0.85;
+}
+
+@media screen and (max-width: 500px) {
+  .form__button_submit_type_entrance {
+    margin-bottom: 20px;
+  }
+}

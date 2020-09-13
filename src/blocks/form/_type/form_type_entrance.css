@@ -1,0 +1,17 @@
+.form_type_entrance {
+  width: 358px;
+  min-height: 100%;
+  flex-grow: 1;
+  margin: auto;
+  padding: 60px 0 80px 0;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .form_type_entrance {
+    width: 81.25vw;
+    padding: 40px 0 42px 0;
+  }
+}

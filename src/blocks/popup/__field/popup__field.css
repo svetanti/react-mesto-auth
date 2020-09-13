@@ -1,0 +1,24 @@
+.popup__field {
+  width: 100%;
+  height: 28px;
+  margin: 0 0 29px;
+  position: relative;
+}
+
+.popup__field:first-of-type {
+  margin-top: 54px;
+}
+
+.popup__field:last-of-type {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__field {
+    height: 22px;
+    margin-bottom: 25px;
+  }
+  .popup__field:first-of-type {
+    margin-top: 32px;
+  }
+}
