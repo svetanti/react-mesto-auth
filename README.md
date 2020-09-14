@@ -12,11 +12,7 @@
 
 ## Для запуска проекта
 
-### `npm start`
-
-## Ссылка на проект
-
-https://svetanti.github.io/react-mesto-auth/
+### `npm run start`
 
 ---
 
@@ -34,7 +30,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To start the project you can run
 
-### `npm start`
-
-## URL
-https://svetanti.github.io/react-mesto-auth/
+### `npm run start`
