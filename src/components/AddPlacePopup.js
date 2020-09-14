@@ -4,49 +4,49 @@ import PopupWithForm from './PopupWithForm';
 function AddPlacePopup(props) {
   const { isOpen, onClose, onAddPlace, isLoading } = props;
 
-  const nameRef = useRef();
+  const titleRef = useRef();
   const linkRef = useRef();
 
-  const [name, setName] = useState('');
+  const [title, setTitle] = useState('');
   const [link, setLink] = useState('');
-  const [nameError, setNameError] = useState('');
+  const [titleError, setTitleError] = useState('');
   const [linkError, setLinkError] = useState('');
-  const [nameValid, setNameValid] = useState(false);
+  const [titleValid, setTitleValid] = useState(false);
   const [linkValid, setLinkValid] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
   React.useEffect(() => {
     setDisabled(true);
-    setNameError('');
+    setTitleError('');
     setLinkError('');
-    setName('');
+    setTitle('');
     setLink('');
   }, [isOpen]);
 
   React.useEffect(() => {
-    nameValid && linkValid ? setDisabled(false) : setDisabled(true);
-  }, [nameValid, linkValid, name, link]);
+    titleValid && linkValid ? setDisabled(false) : setDisabled(true);
+  }, [titleValid, linkValid, link]);
 
   function handleChange(evt) {
-    evt.target.name === 'name'
-      ? setName(evt.target.value)
+    evt.target.name === 'title'
+      ? setTitle(evt.target.value)
       : setLink(evt.target.value);
 
     validate();
   }
 
   function validate() {
-    setNameError(nameRef.current.validationMessage);
+    setTitleError(titleRef.current.validationMessage);
     setLinkError(linkRef.current.validationMessage);
 
-    !nameRef.current.validity.valid ? setNameValid(false) : setNameValid(true);
+    !titleRef.current.validity.valid ? setTitleValid(false) : setTitleValid(true);
     !linkRef.current.validity.valid ? setLinkValid(false) : setLinkValid(true);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
     onAddPlace({
-      name,
+      title,
       link,
     });
   }
@@ -62,13 +62,13 @@ function AddPlacePopup(props) {
       disabled={disabled}
       isLoading={isLoading}
     >
-      <label htmlFor='name' className='form__field'>
+      <label htmlFor='title' className='form__field'>
         <input
-          ref={nameRef}
+          ref={titleRef}
           className='form__input'
-          id='name'
-          name='name'
-          value={name || ''}
+          id='title'
+          name='title'
+          value={title || ''}
           placeholder='Название'
           minLength='1'
           maxLength='30'
@@ -76,12 +76,11 @@ function AddPlacePopup(props) {
           onChange={handleChange}
         />
         <span
-          className={`form__input-error ${
-            !nameValid && 'form__input-error_active'
+          className={`form__input-error ${!titleValid && 'form__input-error_active'
             }`}
-          id='name-error'
+          id='title-error'
         >
-          {nameError}
+          {titleError}
         </span>
       </label>
       <label htmlFor='link' className='form__field'>
@@ -97,8 +96,7 @@ function AddPlacePopup(props) {
           onChange={handleChange}
         />
         <span
-          className={`form__input-error ${
-            !linkValid && 'form__input-error_active'
+          className={`form__input-error ${!linkValid && 'form__input-error_active'
             }`}
           id='link-error'
         >

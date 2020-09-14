@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { withRouter } from 'react-router-dom';
 import Form from './Form';
 import * as auth from '../utils/auth';
 
@@ -73,6 +72,7 @@ function Login({ onLogin }) {
             placeholder='Email'
             minLength='6'
             maxLength='40'
+            autoComplete='email'
             required
             onChange={handleChange}
           />
@@ -92,12 +92,17 @@ function Login({ onLogin }) {
             name='password'
             value={password || ''}
             placeholder='Пароль'
-            minLength='8'
+            minLength='6'
             maxLength='30'
+            autoComplete='current-password'
             required
             onChange={handleChange}
           />
-          <button className={`form__input_password form__input_password_${inputType}`} onClick={handleShowPassword}></button>
+          <button
+            type='button'
+            className={`form__input_password form__input_password_${inputType} button`}
+            onClick={handleShowPassword}
+            onKeyDown={(evt) => evt.preventDefault}></button>
           <span
             className={`form__input-error ${!passwordValid && 'form__input-error_active'}`}
             id='password-error'
@@ -110,4 +115,4 @@ function Login({ onLogin }) {
   );
 }
 
-export default withRouter(Login);
+export default Login;

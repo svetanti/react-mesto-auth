@@ -1,8 +1,11 @@
 import React from 'react';
 
 function AuthInfoMobile({ email, signOut, isAuthInfoOpened }) {
-  const authInfoMobileClassNAme = `auth-info__mobile ${isAuthInfoOpened ? 'auth-info__mobile_opened'
-    : 'auth-info__mobile_closed'}`;
+  const authInfoMobileClassNAme =
+    `auth-info__mobile
+    ${isAuthInfoOpened
+      ? 'auth-info__mobile_opened'
+      : 'auth-info__mobile_closed'}`;
   return (
     <div className={authInfoMobileClassNAme}>
       <span>{email}</span>

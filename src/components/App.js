@@ -72,6 +72,41 @@ function App() {
     }
   }, [history]);
 
+  // Регистрация
+  function handleRegister(data) {
+    setMessage({ iconPath: resolvePath, text: 'Вы успешно зарегистрировались!' });
+    setInfoTooltipOpen(true);
+    if (data instanceof Error) {
+      setMessage({ iconPath: rejectPath, text: data.message });
+      return;
+    }
+    history.push('/sign-in');
+  }
+
+  // Авторизация
+  function handleLogin(data) {
+    setInfoTooltipOpen(true);
+    if (data instanceof Error) {
+      setMessage({ iconPath: rejectPath, text: data.message });
+      return;
+    }
+    auth.getContent(data)
+      .then((res) => {
+        setEmail(res.data.email);
+      });
+    setLoggedIn(true);
+    setMessage({ iconPath: resolvePath, text: 'Вы успешно вошли в приложение!' });
+    history.push('/');
+  }
+
+  // Выход
+  function handleSignOut() {
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    setEmail('');
+    history.push('/sign-in');
+  }
+
   // Получить карточки
   React.useEffect(() => {
     api
@@ -179,41 +214,6 @@ function App() {
     closeAllPopups();
   }
 
-  // Регистрация
-  function handleRegister(data) {
-    setMessage({ iconPath: resolvePath, text: 'Вы успешно зарегистрировались!' });
-    setInfoTooltipOpen(true);
-    if (data instanceof Error) {
-      setMessage({ iconPath: rejectPath, text: data.message });
-      return;
-    }
-    history.push('/sign-in');
-  }
-
-  // Авторизация
-  function handleLogin(data) {
-    setInfoTooltipOpen(true);
-    if (data instanceof Error) {
-      setMessage({ iconPath: rejectPath, text: data.message });
-      return;
-    }
-    auth.getContent(data)
-      .then((res) => {
-        setEmail(res.data.email);
-      });
-    setLoggedIn(true);
-    setMessage({ iconPath: resolvePath, text: 'Вы успешно вошли в приложение!' });
-    history.push('/');
-  }
-
-  // Выход
-  function handleSignOut() {
-    setLoggedIn(false);
-    localStorage.removeItem('jwt');
-    setEmail('');
-    history.push('/sign-in');
-  }
-
   // Открыть/закрыть email пользователя в мобильной версии
   function openAuthInfo() {
     setAuthInfoOpened(!isAuthInfoOpened);
@@ -255,7 +255,6 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-
         <InfoTooltip
           isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
@@ -284,16 +283,13 @@ function App() {
           onClose={closeAllPopups}
           onConfirmDelete={handleConfirm}
         />
-
         <ImagePopup
           name={selectedCard.name}
           link={selectedCard.link}
           onClose={closeAllPopups}
           isOpen={selectedCard.isImageOpen}
         />
-
       </div>
-
     </CurrentUserContext.Provider >
   );
 }

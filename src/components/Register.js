@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { withRouter } from 'react-router-dom';
 import Form from './Form';
 import * as auth from '../utils/auth';
 
@@ -99,7 +98,11 @@ function Register({ onRegister }) {
             required
             onChange={handleChange}
           />
-          <button className={`form__input_password form__input_password_${inputType}`} onClick={handleShowPassword}></button>
+          <button
+            type='button'
+            className={`form__input_password form__input_password_${inputType} button`}
+            onClick={handleShowPassword}
+            onKeyDown={(evt) => evt.preventDefault}></button>
           <span
             className={`form__input-error ${!passwordValid && 'form__input-error_active'}`}
             id='password-error'
@@ -112,4 +115,4 @@ function Register({ onRegister }) {
   );
 }
 
-export default withRouter(Register);
+export default Register;

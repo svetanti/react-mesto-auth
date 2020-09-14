@@ -45,7 +45,7 @@ class Api {
     return this._sendRequest(`cards`, {
       method: 'POST',
       body: JSON.stringify({
-        name: newCard.name,
+        name: newCard.title,
         link: newCard.link,
       }),
       headers: this._headers,

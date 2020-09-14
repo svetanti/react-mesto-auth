@@ -12,7 +12,7 @@ function InfoTooltip(props) {
       onClose={onClose}
       loggedIn={loggedIn}
     >
-      <img src={message.iconPath} alt='Иконка успешной авторизации' className='form__icon' />
+      <img src={message.iconPath} alt='Иконка авторизации' className='form__icon' />
       <p className='form__text'>{message.text}</p>
 
     </PopupWithForm >
