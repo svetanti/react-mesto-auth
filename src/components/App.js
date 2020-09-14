@@ -41,7 +41,7 @@ function App() {
   const [isLoading, setLoading] = useState();
   const [isAuthInfoOpened, setAuthInfoOpened] = useState(false);
   const [message, setMessage] = useState({
-    iconPath: rejectPath,
+    iconPath: '',
     text: 'Что-то пошло не так! Попробуйте ещё раз.'
   });
 
