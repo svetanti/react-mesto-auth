@@ -60,8 +60,8 @@ function App() {
 
   // Проверить токен
   React.useEffect(() => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
       auth.getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
@@ -133,9 +133,11 @@ function App() {
   function handleConfirm() {
     api
       .deleteCard(cardToDelete._id)
-      .then(() => setCards(cards.filter((item) => item !== cardToDelete)))
+      .then(() => {
+        setCards(cards.filter((item) => item !== cardToDelete));
+        closeAllPopups();
+      })
       .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
-    closeAllPopups();
   }
 
   // Кликнуть на удаление карточки
@@ -197,10 +199,12 @@ function App() {
     setLoading(true);
     api
       .updateUserInfo(userData)
-      .then((newUser) => setCurrentUser(newUser))
+      .then((newUser) => {
+        setCurrentUser(newUser);
+        closeAllPopups();
+      })
       .catch((err) => `Ошибка при обновлении информации о пользователе: ${err}`)
       .finally(() => setLoading(false));
-    closeAllPopups();
   }
 
   // Добавить карточку
@@ -208,10 +212,12 @@ function App() {
     setLoading(true);
     api
       .addNewCard(card)
-      .then((newCard) => setCards([newCard, ...cards]))
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
       .catch((err) => console.log(`Ошибка при добавлении новой карточки: ${err}`))
       .finally(() => setLoading(false));
-    closeAllPopups();
   }
 
   // Открыть/закрыть email пользователя в мобильной версии
