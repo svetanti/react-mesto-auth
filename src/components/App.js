@@ -21,10 +21,12 @@ import * as auth from '../utils/auth';
 import AuthInfoMobile from './AuthInfoMobile';
 import resolvePath from '../images/infoTooltip/resolve.svg';
 import rejectPath from '../images/infoTooltip/reject.svg';
+import loader from '../images/infoTooltip/loader.svg';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
+
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
@@ -41,12 +43,13 @@ function App() {
   const [isLoading, setLoading] = useState();
   const [isAuthInfoOpened, setAuthInfoOpened] = useState(false);
   const [message, setMessage] = useState({
-    iconPath: '',
-    text: 'Что-то пошло не так! Попробуйте ещё раз.'
+    iconPath: loader,
+    text: ''
   });
 
   const location = useLocation();
   const history = useHistory();
+  const escape = require('escape-html');
 
   // Получить данные пользователя
   React.useEffect(() => {
@@ -73,30 +76,29 @@ function App() {
   }, [history]);
 
   // Регистрация
-  function handleRegister(data) {
-    setMessage({ iconPath: resolvePath, text: 'Вы успешно зарегистрировались!' });
+  function handleRegister(password, email) {
+    auth.register(escape(password), email)
+      .then(() => {
+        setMessage({ iconPath: resolvePath, text: 'Вы успешно зарегистрировались!' });
+      })
+      .catch((err) => setMessage({ iconPath: rejectPath, text: err.message }));
     setInfoTooltipOpen(true);
-    if (data instanceof Error) {
-      setMessage({ iconPath: rejectPath, text: data.message });
-      return;
-    }
-    history.push('/sign-in');
   }
 
   // Авторизация
-  function handleLogin(data) {
+  function handleLogin(password, email) {
+    auth.authorize(escape(password), email)
+      .then((data) => {
+        auth.getContent(data)
+          .then((res) => {
+            setEmail(res.data.email);
+          });
+        setLoggedIn(true);
+        setMessage({ iconPath: resolvePath, text: 'Вы успешно вошли в приложение!' });
+        history.push('/');
+      })
+      .catch((err) => setMessage({ iconPath: rejectPath, text: err.message }))
     setInfoTooltipOpen(true);
-    if (data instanceof Error) {
-      setMessage({ iconPath: rejectPath, text: data.message });
-      return;
-    }
-    auth.getContent(data)
-      .then((res) => {
-        setEmail(res.data.email);
-      });
-    setLoggedIn(true);
-    setMessage({ iconPath: resolvePath, text: 'Вы успешно вошли в приложение!' });
-    history.push('/');
   }
 
   // Выход
@@ -179,6 +181,10 @@ function App() {
     });
     setConfirmPopupOpen(false);
     setInfoTooltipOpen(false);
+    setMessage({
+      iconPath: loader,
+      text: ''
+    });
   }
 
   // Обновить аватар

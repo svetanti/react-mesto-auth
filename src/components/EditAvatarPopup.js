@@ -10,7 +10,7 @@ function EditAvatarPopup(props) {
   const [urlValid, setUrlValid] = useState(false);
 
   React.useEffect(() => {
-    setDisabled(true);
+    setUrlValid(false);
     setUrlError('');
     inputRef.current.value = '';
   }, [isOpen]);
@@ -53,8 +53,7 @@ function EditAvatarPopup(props) {
           onChange={validate}
         />
         <span
-          className={`form__input-error ${
-            !urlValid && 'form__input-error_active'
+          className={`form__input-error ${!urlValid && 'form__input-error_active'
             }`}
           id='url-error'
         >
