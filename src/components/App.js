@@ -92,7 +92,8 @@ function App() {
         auth.getContent(data)
           .then((res) => {
             setEmail(res.data.email);
-          });
+          })
+          .catch(err => console.log(err));
         setLoggedIn(true);
         setMessage({ iconPath: resolvePath, text: 'Вы успешно вошли в приложение!' });
         history.push('/');
