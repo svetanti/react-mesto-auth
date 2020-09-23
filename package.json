@@ -17,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && scp -r ./build/* svetanti@130.193.46.57:/home/svetanti/mesto-frontend"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,5 +41,5 @@
     "type": "git",
     "url": "git+https://github.com/svetanti/react-mesto-auth.git"
   },
-  "homepage": "https://svetanti.github.io/react-mesto-auth/"
+  "homepage": "."
 }
