@@ -86,7 +86,7 @@ function AuthForm({ title, submitButtonText, path,
             name='password'
             value={password || ''}
             placeholder='Пароль'
-            minLength='6'
+            minLength='8'
             maxLength='30'
             autoComplete={autoCompletePassword}
             required

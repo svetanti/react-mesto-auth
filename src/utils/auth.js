@@ -1,6 +1,6 @@
 import BadRequestError from '../errors/BadRequestError';
 import UnauthorizedError from '../errors/UnauthorizedError';
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://www.api.s-mesto.students.nomoreparties.co';
 
 // Отправляем запрос за регистрацию
 export const register = (password, email) => fetch(`${BASE_URL}/signup`, {
